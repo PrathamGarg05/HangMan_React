@@ -1,15 +1,14 @@
 
 import { Route, Routes } from 'react-router-dom'
 import './App.css'
-import TextInputFormContainer from './components/TextInputForm/textInputFormContainer'
 import StartGame from './pages/StartGame'
-import PlayGame from './pages/PlayGame'
+import PlayGameContainer from './pages/PlayGame/PlayGameContainer'
 function App() {
 
   return (
       <Routes>
         <Route path='/start' element={<StartGame />} />
-        <Route path='/play' element={<PlayGame />} />
+        <Route path='/play' element={<PlayGameContainer />} />
       </Routes>
   )
 }
