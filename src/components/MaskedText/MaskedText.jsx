@@ -1,8 +1,9 @@
+import { useNavigate } from "react-router-dom";
 import { MaskedString } from "./MaskedTextUtility";
 
 function MaskedText({text , guessedLetters}){
     const maskedString = MaskedString(text, guessedLetters);
-
+    const navigate = useNavigate();
     return (
         <>
             {maskedString.map((letter, index) => {
