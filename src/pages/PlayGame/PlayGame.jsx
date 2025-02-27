@@ -1,7 +1,7 @@
 import { Link, useLocation } from "react-router-dom";
 import MaskedText from "../../components/MaskedText/MaskedText";
-import LetterButtons from "../../components/LetterButtons/LetterButtons";
 import HangMan from "../../components/HangMan/Hangman";
+import LetterButtonsContainer from "../../components/LetterButtons/LetterButtonsContainer";
 
 
 function PlayGame({state, guessedLetters, steps, correct, handleLetterClick}){
@@ -12,7 +12,7 @@ function PlayGame({state, guessedLetters, steps, correct, handleLetterClick}){
 
         <MaskedText text={state.wordSelected} guessedLetters={guessedLetters} />
         <div>
-          <LetterButtons
+          <LetterButtonsContainer
             text={state.wordSelected}
             guessedLetters={guessedLetters}
             onLetterClick={handleLetterClick}
