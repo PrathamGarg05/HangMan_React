@@ -19,11 +19,15 @@ function HangMan({ steps, win }) {
     level8,
   ];
   return (
-    <div className="w-[300px] h-[300px] flex flex-col justify-center items-center">
-      <img src={win ? levelWon : levels[steps]} />
+    <div className="w-[400px] h-[400px] ">
+      <img className="w-5/6 h-5/6" src={win ? levelWon : levels[steps]} />
 
-      {win == 1 ? <h1 className="text-3xl">You Win</h1> : null}
-      {steps == 7 ? <h1 className="text-3xl">You Lose</h1> : null}
+      {win == 1 ? (
+        <h1 className="text-3xl flex justify-center">You Win</h1>
+      ) : null}
+      {steps == 7 ? (
+        <h1 className="text-3xl flex justify-center">You Lose</h1>
+      ) : null}
     </div>
   );
 }

@@ -9,7 +9,7 @@ function PlayGameContainer() {
     const [steps, setsteps] = useState(0);
     const [correct, setCorrect] = useState(0);
     const letterFrequency = {};
-    state.wordSelected
+    state?.wordSelected
       .toUpperCase()
       .split("")
       .forEach((char) => {
@@ -17,7 +17,7 @@ function PlayGameContainer() {
       });
     function handleLetterClick(letter) {
       setGuessedLetters([...guessedLetters, letter]);
-      if (state.wordSelected.toUpperCase().includes(letter)) {
+      if (state?.wordSelected.toUpperCase().includes(letter)) {
         setCorrect(correct + letterFrequency[letter]);
         console.log(correct);
       } else {

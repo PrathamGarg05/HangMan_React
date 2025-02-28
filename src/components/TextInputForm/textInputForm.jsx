@@ -12,6 +12,13 @@ function TextInputForm({inputType,handleFormSubmit, handleShowHideClick,handleTe
             onChangeHandler={handleTextInputChange}
             placeholder="Enter a word here..."
           ></TextInput>
+          <TextInput
+            type="text"
+            label="Enter a hint"
+            onChangeHandler={handleTextInputChange}
+            placeholder="Enter a hint here..."
+          >
+          </TextInput>
         </div>
         <div>
           <Button
