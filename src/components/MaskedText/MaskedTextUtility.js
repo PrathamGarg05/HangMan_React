@@ -1,6 +1,10 @@
+import { useContext } from "react";
+import { WordContext } from "../../context/WordContext";
 
 export function MaskedString(originalWord, guessedLetters){
     guessedLetters = guessedLetters.map(letter => letter.toUpperCase());
+
+    const{word, steps} = useContext(WordContext);
      
     const guessedLetterSet = new Set(guessedLetters);
 
@@ -11,6 +15,6 @@ export function MaskedString(originalWord, guessedLetters){
             return '_';
         }
     });
-    return result;
+    return (steps === 7 ? word.toUpperCase().split('') : result);
 
 }

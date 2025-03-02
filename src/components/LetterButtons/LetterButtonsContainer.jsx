@@ -1,4 +1,6 @@
+import { useContext } from "react";
 import LetterButtons from "./LetterButtons";
+import { WordContext } from "../../context/WordContext";
 
 const Line1 = "QWERTYUIOP".split("");
 const Line2 = "ASDFGHJKL".split("");
@@ -6,12 +8,11 @@ const Line3 = "ZXCVBNM".split("");
 function LetterButtonsContainer({
   text,
   guessedLetters,
-  onLetterClick,
-  steps,
-  win,
+  onLetterClick
 }) {
   const originalLetters = new Set(text.toUpperCase().split(""));
   const guessedLettersSet = new Set(guessedLetters);
+  const{steps, correct, word} = useContext(WordContext);
 
   const buttonStyle = function (letter) {
     if (guessedLettersSet.has(letter)) {
@@ -26,7 +27,7 @@ function LetterButtonsContainer({
     onLetterClick?.(letter);
   }
   function disableButton(letter) {
-    return guessedLettersSet.has(letter) || steps >= 7 || win;
+    return guessedLettersSet.has(letter) || steps >= 7 || correct === word.length;
   }
 
   function getButtons(Line) {

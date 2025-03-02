@@ -1,37 +1,35 @@
 import { Link, useLocation } from "react-router-dom";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import PlayGame from "./PlayGame";
+import { WordContext } from "../../context/WordContext";
 
 function PlayGameContainer() {
-    const { state } = useLocation();
-
+    // const { state } = useLocation();
+    const{word, hint,steps,setSteps,correct,setCorrect} = useContext(WordContext);
     const [guessedLetters, setGuessedLetters] = useState([]);
-    const [steps, setsteps] = useState(0);
-    const [correct, setCorrect] = useState(0);
     const letterFrequency = {};
-    state?.wordSelected
-      .toUpperCase()
+    word
+      ?.toUpperCase()
       .split("")
       .forEach((char) => {
         letterFrequency[char] = (letterFrequency[char] || 0) + 1;
       });
     function handleLetterClick(letter) {
       setGuessedLetters([...guessedLetters, letter]);
-      if (state?.wordSelected.toUpperCase().includes(letter)) {
+      if (word?.toUpperCase().includes(letter)) {
         setCorrect(correct + letterFrequency[letter]);
         console.log(correct);
       } else {
-        setsteps(steps + 1);
+        setSteps(steps + 1);
         console.log("Wrong");
       }
     }
 
     return(
         <PlayGame 
-            state={state}
+            word={word}
+            hint={hint}
             guessedLetters={guessedLetters}
-            steps={steps}
-            correct={correct}
             handleLetterClick={handleLetterClick}
         />
     )

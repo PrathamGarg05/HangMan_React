@@ -1,20 +1,20 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import TextInputForm from "./textInputForm";
 import { useNavigate } from "react-router-dom";
+import { WordContext } from "../../context/WordContext";
 
 function TextInputFormContainer(){
 
     const [inputType, setInputType] = useState("password");
-    const [value, setValue] = useState("");
-    const [hint, setHint] = useState("");
+    const {setWord, setHint, hint, word} = useContext(WordContext);
 
     const navigate = useNavigate();
 
     function handleFormSubmit(event){
         event.preventDefault();
-        console.log("Form Submitted", value);
-        if(value && hint){
-            navigate('/play', { state: {wordSelected : value , wordHint: hint}});
+        console.log("Form Submitted", word);
+        if (word && hint) {
+          navigate("/play");
         }
     }
 
@@ -22,7 +22,7 @@ function TextInputFormContainer(){
         console.log("Text Input changed");
         
         if(event.target.placeholder === "Enter a word here..."){
-            setValue(event.target.value);
+            setWord(event.target.value);
             setHint("");
             
         } else if(event.target.placeholder === "Enter a hint here..."){

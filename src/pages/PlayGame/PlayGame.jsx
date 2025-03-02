@@ -3,37 +3,36 @@ import MaskedText from "../../components/MaskedText/MaskedText";
 import HangMan from "../../components/HangMan/Hangman";
 import LetterButtonsContainer from "../../components/LetterButtons/LetterButtonsContainer";
 import WordHint from "../../components/Hint/Hint";
+import { useContext } from "react";
+import { WordContext } from "../../context/WordContext";
 
 
-function PlayGame({state, guessedLetters, steps, correct, handleLetterClick}){
+function PlayGame({word, hint, guessedLetters, handleLetterClick}){
+
+    const {steps, correct} = useContext(WordContext);
+
 
     return (
-      <div className="flex flex-col items-stretch">
-        <h1 className="flex justify-center text-xl font-bold">Play Game</h1>
+      <div className="flex flex-col h-full justify-center items-center">
+        <h1 className="flex justify-center text-xl font-bold items-center">
+          Play Game
+        </h1>
 
-        {state?.wordSelected && (
-          <div className="flex flex-row justify-evenly">
+        {word && (
+          <div className="flex flex-row justify-evenly items-center h-full">
             <div className="m-10">
-              <WordHint wordHint={state.wordHint} />
-              <MaskedText
-                text={state.wordSelected}
-                guessedLetters={guessedLetters}
-              />
+              <WordHint wordHint={hint} />
+              <MaskedText text={word} guessedLetters={guessedLetters} />
               <div>
                 <LetterButtonsContainer
-                  text={state.wordSelected}
+                  text={word}
                   guessedLetters={guessedLetters}
                   onLetterClick={handleLetterClick}
-                  steps={steps}
-                  win={correct === state.wordSelected.length}
                 />
               </div>
             </div>
-            <div className="flex flex-col items-center justify-center">
-              <HangMan
-                steps={steps}
-                win={correct === state.wordSelected.length}
-              />
+            <div className="flex flex-col items-center justify-center h-full">
+              <HangMan steps={steps} win={correct === word.length} />
             </div>
           </div>
         )}
